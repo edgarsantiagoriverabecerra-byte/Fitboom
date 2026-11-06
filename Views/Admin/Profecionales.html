@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestión de Profesionales - FITBOOM</title>
+    <!-- Bootstrap 5 CSS CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .text-neon {
+            color: #ADFF2F !important;
+        }
+    </style>
+</head>
+<body class="bg-black text-white">
+
+    <div class="container py-4">
+        <!-- Encabezado de la Sección -->
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <div>
+                <h3 class="fw-bold text-white mb-0"><i class="bi bi-person-badge text-neon me-2"></i>Equipo de Profesionales</h3>
+                <p class="text-muted small mb-0">Entrenadores y nutricionistas de la plataforma.</p>
+            </div>
+        </div>
+
+        <!-- Tarjeta con la Tabla de Profesionales -->
+        <div class="card bg-dark border-secondary shadow-sm">
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-dark table-hover align-middle mb-0">
+                        <thead>
+                            <tr class="text-muted border-bottom border-secondary small">
+                                <th class="ps-3">Nombre</th>
+                                <th>Correo</th>
+                                <th>Especialidad / Rol</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- Fila de ejemplo 1 -->
+                            <tr>
+                                <td class="ps-3 fw-semibold text-white">Carlos Méndez</td>
+                                <td class="text-muted">carlos.mendez@fitboom.com</td>
+                                <td>
+                                    <span class="badge bg-warning text-dark fw-bold px-3 py-2">
+                                        Entrenador
+                                    </span>
+                                </td>
+                            </tr>
+                            <!-- Fila de ejemplo 2 -->
+                            <tr>
+                                <td class="ps-3 fw-semibold text-white">Laura Gómez</td>
+                                <td class="text-muted">laura.gomez@fitboom.com</td>
+                                <td>
+                                    <span class="badge bg-warning text-dark fw-bold px-3 py-2">
+                                        Nutricionista
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS Bundle CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
