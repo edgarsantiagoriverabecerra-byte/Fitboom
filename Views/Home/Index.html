@@ -25,12 +25,10 @@
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 
     <style>
-        /* Desplazamiento suave general */
         html {
             scroll-behavior: smooth;
         }
 
-        /* Margen de desplazamiento para no solapar con la barra fija superior */
         section, header {
             scroll-margin-top: 80px;
         }
@@ -74,7 +72,6 @@
             background-color: #ADFF2F !important;
         }
 
-        /* Hero styling */
         .hero-section {
             min-height: 90vh;
             background: linear-gradient(90deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.6) 50%, rgba(0, 0, 0, 0.3) 100%), url('https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1920&auto=format&fit=crop') center/cover no-repeat #0a0a0a;
@@ -86,28 +83,29 @@
             position: fixed;
             bottom: 25px;
             right: 25px;
-            width: 60px;
-            height: 60px;
+            width: 64px;
+            height: 64px;
             border-radius: 50%;
-            background-color: #121212;
+            background-color: #ADFF2F;
             border: 2px solid #ADFF2F;
-            font-size: 28px;
+            padding: 0;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
             z-index: 1050;
-            box-shadow: 0 4px 15px rgba(173, 255, 47, 0.3);
-            transition: transform 0.2s ease;
+            box-shadow: 0 0 20px rgba(173, 255, 47, 0.45);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
         }
 
         .fitbot-floating-btn:hover {
             transform: scale(1.08);
+            box-shadow: 0 0 26px rgba(173, 255, 47, 0.7);
         }
 
         .fitbot-window {
             position: fixed;
-            bottom: 95px;
+            bottom: 98px;
             right: 25px;
             width: 350px;
             max-width: 90vw;
@@ -120,6 +118,10 @@
             z-index: 1050;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
             overflow: hidden;
+        }
+
+        .fitbot-window.open {
+            display: flex;
         }
 
         .fitbot-header {
@@ -238,8 +240,8 @@
                     <li class="nav-item"><a class="nav-link text-light" href="#contacto">Contacto</a></li>
                 </ul>
                 <div class="d-flex gap-2">
-                    <button class="btn btn-outline-light btn-sm text-uppercase fw-bold px-3" data-bs-toggle="modal" data-bs-target="#modalLogin">Ingresar</button>
-                    <button class="btn btn-brand btn-sm text-uppercase fw-bold px-3" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Únete Ahora</button>
+                    <button type="button" class="btn btn-outline-light btn-sm text-uppercase fw-bold px-3" data-bs-toggle="modal" data-bs-target="#modalLogin">Ingresar</button>
+                    <button type="button" class="btn btn-brand btn-sm text-uppercase fw-bold px-3" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Únete Ahora</button>
                 </div>
             </div>
         </div>
@@ -355,7 +357,7 @@
             <p class="text-brand fw-bold mb-1 text-uppercase">// Nutrición Personalizada</p>
             <div class="d-flex justify-content-between align-items-end flex-wrap mb-4">
                 <h2 class="display-4 fw-bold text-uppercase brand-title mb-0">Come para rendir</h2>
-                <button class="btn btn-brand fw-bold text-uppercase px-4 mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Quiero mi Plan</button>
+                <button type="button" class="btn btn-brand fw-bold text-uppercase px-4 mt-3 mt-md-0" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Quiero mi Plan</button>
             </div>
 
             <ul class="nav nav-pills mb-4 border-bottom border-secondary pb-3" id="nutriTabs" role="tablist">
@@ -559,7 +561,7 @@
                                 <li class="mb-2"><i class="bi bi-check text-brand me-2"></i> Clases grupales x8 al mes</li>
                             </ul>
                         </div>
-                        <button class="btn btn-outline-light text-uppercase fw-bold w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Comenzar Ahora</button>
+                        <button type="button" class="btn btn-outline-light text-uppercase fw-bold w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modalOnboarding" data-plan="Básico">Comenzar Ahora</button>
                     </div>
                 </div>
 
@@ -577,7 +579,7 @@
                                 <li class="mb-2"><i class="bi bi-check-lg me-2"></i> Análisis antropométrico mensual</li>
                             </ul>
                         </div>
-                        <button class="btn btn-black text-uppercase fw-bold w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Comenzar Ahora</button>
+                        <button type="button" class="btn btn-black text-uppercase fw-bold w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modalOnboarding" data-plan="Pro">Comenzar Ahora</button>
                     </div>
                 </div>
 
@@ -594,118 +596,309 @@
                                 <li class="mb-2"><i class="bi bi-check text-brand me-2"></i> Acceso prioritario VIP y locker</li>
                             </ul>
                         </div>
-                        <button class="btn btn-outline-light text-uppercase fw-bold w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modalOnboarding">Comenzar Ahora</button>
+                        <button type="button" class="btn btn-outline-light text-uppercase fw-bold w-100 mt-4" data-bs-toggle="modal" data-bs-target="#modalOnboarding" data-plan="Élite">Comenzar Ahora</button>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contacto / Footer -->
-    <footer id="contacto" class="bg-black text-white border-top border-secondary py-5">
+    <!-- Sección Contacto -->
+    <section id="contacto" class="py-5 bg-dark text-white border-top border-secondary">
         <div class="container py-4">
-            <div class="row g-4">
-                <div class="col-lg-4">
-                    <h3 class="brand-title text-brand fs-2 mb-3">FITBOOM</h3>
-                    <p class="text-secondary small">Forja tu mejor versión con un enfoque basado en ciencia, disciplina y comunidad.</p>
+            <div class="row g-5 align-items-center">
+                <div class="col-lg-6">
+                    <p class="text-brand fw-bold mb-1 text-uppercase">// Contacto</p>
+                    <h2 class="display-3 fw-bold text-uppercase brand-title mb-3">Hablemos de tus metas</h2>
+                    <p class="text-secondary lead fs-6 mb-4">
+                        Agenda tu prueba gratuita o indícanos tus objetivos para asignarte el entrenador adecuado.
+                    </p>
+
+                    <div class="small text-secondary">
+                        <p class="mb-2">
+                            <strong class="text-white">Ubicación:</strong> Carrera 18 # 42-27, Barrio El Prado
+                        </p>
+                        <p class="mb-2">
+                            <strong class="text-white">Horario:</strong> Lun - Vie: 5:00 am - 11:00 pm | Sáb - Dom: 7:00 am - 9:00 pm
+                        </p>
+                        <p class="mb-0">
+                            <strong class="text-white">Contacto:</strong> +57 314 255 6987 | contacto@fitboom.co
+                        </p>
+                    </div>
                 </div>
-                <div class="col-lg-4">
-                    <h5 class="brand-title text-uppercase mb-3">Enlaces Rápidos</h5>
-                    <ul class="list-unstyled small text-secondary">
-                        <li class="mb-2"><a href="#inicio" class="text-decoration-none text-secondary">Inicio</a></li>
-                        <li class="mb-2"><a href="#programas" class="text-decoration-none text-secondary">Programas</a></li>
-                        <li class="mb-2"><a href="#nutricion" class="text-decoration-none text-secondary">Nutrición</a></li>
-                        <li class="mb-2"><a href="#membresias" class="text-decoration-none text-secondary">Membresías</a></li>
-                    </ul>
-                </div>
-                <div class="col-lg-4">
-                    <h5 class="brand-title text-uppercase mb-3">Contacto</h5>
-                    <p class="text-secondary small mb-1"><i class="bi bi-geo-alt text-brand me-2"></i> Calle Principal #10-20, Ciudad</p>
-                    <p class="text-secondary small mb-1"><i class="bi bi-telephone text-brand me-2"></i> +57 300 123 4567</p>
-                    <p class="text-secondary small"><i class="bi bi-envelope text-brand me-2"></i> soporte@fitboom.com</p>
+
+                <div class="col-lg-6">
+                    <div class="card bg-black border-secondary p-4 p-md-5 rounded-3 shadow-lg">
+                        <form id="formContactoFitboom">
+                            <div class="mb-3">
+                                <label for="contactoNombre" class="form-label small text-uppercase text-secondary fw-semibold">Nombre completo</label>
+                                <input type="text" class="form-control bg-dark text-white border-secondary py-2" id="contactoNombre" name="nombre" placeholder="Tu nombre" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contactoCorreo" class="form-label small text-uppercase text-secondary fw-semibold">Correo electrónico</label>
+                                <input type="email" class="form-control bg-dark text-white border-secondary py-2" id="contactoCorreo" name="correo" placeholder="tu@email.com" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="contactoTelefono" class="form-label small text-uppercase text-secondary fw-semibold">Teléfono</label>
+                                <input type="tel" class="form-control bg-dark text-white border-secondary py-2" id="contactoTelefono" name="telefono" placeholder="+57 300 000 0000" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label for="contactoPrograma" class="form-label small text-uppercase text-secondary fw-semibold">Programa de interés</label>
+                                <select class="form-select bg-dark text-white border-secondary py-2" id="contactoPrograma" name="programa">
+                                    <option value="Entrenamiento Personal 1 a 1" selected>Entrenamiento Personal 1 a 1</option>
+                                    <option value="Fuerza & Acondicionamiento">Fuerza & Acondicionamiento</option>
+                                    <option value="Nutrición & Estilo de Vida">Nutrición & Estilo de Vida</option>
+                                    <option value="HIIT & Cardio Funcional">HIIT & Cardio Funcional</option>
+                                </select>
+                            </div>
+
+                            <div id="contactoFeedback" class="alert d-none py-2 small"></div>
+
+                            <button type="submit" class="btn btn-brand fw-bold text-uppercase w-100 py-2">Enviar Mensaje</button>
+                        </form>
+                    </div>
                 </div>
             </div>
-            <hr class="border-secondary my-4">
-            <div class="text-center text-secondary small">
-                &copy; 2026 FITBOOM. Todos los derechos reservados.
-            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-4 bg-black text-secondary border-top border-secondary text-center small">
+        <div class="container">
+            <p class="mb-0">&copy; 2026 FITBOOM. Todos los derechos reservados.</p>
         </div>
     </footer>
 
-    <!-- Chatbot Flotante FitBot -->
-    <div class="fitbot-floating-btn" id="fitbotBtn" title="Habla con FitBot">
-        🤖
-    </div>
+    <!-- FitBot Floating Button & Window -->
+    <button type="button" id="fitbotToggle" class="fitbot-floating-btn" title="Abrir FitBot" aria-label="Abrir FitBot">
+        <svg width="38" height="38" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <line x1="24" y1="6" x2="24" y2="12" stroke="#1E293B" stroke-width="2.5" stroke-linecap="round"/>
+            <circle cx="24" cy="5.5" r="2.5" fill="#EF4444"/>
+            <rect x="11" y="12" width="26" height="22" rx="7" fill="#FFFFFF" stroke="#1E293B" stroke-width="2.5"/>
+            <rect x="14.5" y="16.5" width="19" height="10" rx="4.5" fill="#1E293B"/>
+            <circle cx="19.5" cy="21.5" r="2.2" fill="#38BDF8"/>
+            <circle cx="28.5" cy="21.5" r="2.2" fill="#38BDF8"/>
+            <circle cx="16.5" cy="29.5" r="1.6" fill="#F472B6"/>
+            <circle cx="31.5" cy="29.5" r="1.6" fill="#F472B6"/>
+            <path d="M20.5 30.2C21.6 31.3 26.4 31.3 27.5 30.2" stroke="#1E293B" stroke-width="2" stroke-linecap="round"/>
+            <rect x="19" y="34" width="10" height="3.5" rx="1.75" fill="#1E293B"/>
+        </svg>
+    </button>
 
-    <div class="fitbot-window" id="fitbotWindow">
+    <div id="fitbotWindow" class="fitbot-window" aria-live="polite">
         <div class="fitbot-header">
             <div class="d-flex align-items-center gap-2">
                 <span class="fitbot-status-dot"></span>
-                <span class="fw-bold small text-white">FitBot Asistente</span>
+                <strong class="brand-title fs-5 text-white">FITBOT</strong>
             </div>
-            <button class="btn-close btn-close-white btn-sm" id="fitbotClose"></button>
+            <button type="button" id="fitbotClose" class="btn-close btn-close-white btn-sm" aria-label="Cerrar FitBot"></button>
         </div>
-        <div class="fitbot-body" id="fitbotBody">
+        <div id="fitbotBody" class="fitbot-body">
             <div class="fitbot-msg bot">
-                ¡Hola! Soy tu asistente virtual de FITBOOM. ¿En qué puedo ayudarte hoy para forjar tu mejor versión?
+                ¡Hola! Soy <strong>FitBot</strong>. ¿En qué te ayudo hoy para forjar tu mejor versión?
             </div>
-            <div class="d-flex flex-column gap-2 mt-2">
-                <button class="fitbot-opt-btn" onclick="fitbotResponder('planes')"><span>¿Cuáles son los planes?</span> &rarr;</button>
-                <button class="fitbot-opt-btn" onclick="fitbotResponder('nutricion')"><span>Información de nutrición</span> &rarr;</button>
-                <button class="fitbot-opt-btn" onclick="fitbotResponder('contacto')"><span>Hablar con un asesor</span> &rarr;</button>
+            <button type="button" class="fitbot-opt-btn" data-opt="programas">
+                <span>Ver programas y rutinas</span>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+            <button type="button" class="fitbot-opt-btn" data-opt="nutricion">
+                <span>Planes de nutrición</span>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+            <button type="button" class="fitbot-opt-btn" data-opt="membresias">
+                <span>Precios y membresías</span>
+                <i class="bi bi-chevron-right"></i>
+            </button>
+        </div>
+    </div>
+
+    <!-- Modal Iniciar Sesión -->
+    <div class="modal fade" id="modalLogin" tabindex="-1" aria-labelledby="modalLoginLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title brand-title text-uppercase text-brand" id="modalLoginLabel">Iniciar Sesión — FITBOOM</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formLoginModal">
+                        <div class="mb-3">
+                            <label for="loginCorreo" class="form-label small text-uppercase">Correo electrónico</label>
+                            <input type="email" class="form-control bg-black text-white border-secondary" id="loginCorreo" name="correo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="loginPassword" class="form-label small text-uppercase">Contraseña</label>
+                            <input type="password" class="form-control bg-black text-white border-secondary" id="loginPassword" name="password" required>
+                        </div>
+                        <div id="loginErrorMsg" class="alert alert-danger d-none py-2 small"></div>
+                        <button type="submit" class="btn btn-brand fw-bold text-uppercase w-100">Ingresar</button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Bootstrap 5 JS Bundle -->
+    <!-- Modal Onboarding / Registro -->
+    <div class="modal fade" id="modalOnboarding" tabindex="-1" aria-labelledby="modalOnboardingLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content bg-dark text-white border-secondary">
+                <div class="modal-header border-secondary">
+                    <h5 class="modal-title brand-title text-uppercase text-brand" id="modalOnboardingLabel">Únete a FITBOOM</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="formOnboardingModal">
+                        <div class="mb-3">
+                            <label for="onboardingNombre" class="form-label small text-uppercase">Nombre completo</label>
+                            <input type="text" class="form-control bg-black text-white border-secondary" id="onboardingNombre" name="nombre" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="onboardingCorreo" class="form-label small text-uppercase">Correo electrónico</label>
+                            <input type="email" class="form-control bg-black text-white border-secondary" id="onboardingCorreo" name="correo" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="onboardingObjetivo" class="form-label small text-uppercase">Objetivo principal</label>
+                            <select class="form-select bg-black text-white border-secondary" id="onboardingObjetivo" name="objetivo">
+                                <option value="Ganar masa muscular">Ganar masa muscular</option>
+                                <option value="Perder grasa">Perder grasa</option>
+                                <option value="Rendimiento y cardio">Rendimiento y cardio</option>
+                                <option value="Salud y bienestar">Salud y bienestar</option>
+                            </select>
+                        </div>
+                        <div class="mb-3">
+                            <label for="onboardingPlan" class="form-label small text-uppercase">Plan de membresía</label>
+                            <select class="form-select bg-black text-white border-secondary" id="onboardingPlan" name="plan">
+                                <option value="Básico">Básico — $80,000 / mes</option>
+                                <option value="Pro" selected>Pro — $230,000 / 3 meses</option>
+                                <option value="Élite">Élite — $900,000 / anual</option>
+                            </select>
+                        </div>
+                        <div id="onboardingFeedback" class="alert d-none py-2 small"></div>
+                        <button type="submit" class="btn btn-brand fw-bold text-uppercase w-100">Confirmar Registro</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 Bundle JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Lógica FitBot y Formulario Contacto -->
     <script>
-        // Lógica del Chatbot FitBot
-        const fitbotBtn = document.getElementById('fitbotBtn');
-        const fitbotWindow = document.getElementById('fitbotWindow');
-        const fitbotClose = document.getElementById('fitbotClose');
-        const fitbotBody = document.getElementById('fitbotBody');
+        const fitbotToggle = document.getElementById("fitbotToggle");
+        const fitbotWindow = document.getElementById("fitbotWindow");
+        const fitbotClose = document.getElementById("fitbotClose");
+        const fitbotBody = document.getElementById("fitbotBody");
 
-        fitbotBtn.addEventListener('click', () => {
-            fitbotWindow.style.display = fitbotWindow.style.display === 'flex' ? 'none' : 'flex';
+        fitbotToggle?.addEventListener("click", () => {
+            fitbotWindow?.classList.toggle("open");
         });
 
-        fitbotClose.addEventListener('click', () => {
-            fitbotWindow.style.display = 'none';
+        fitbotClose?.addEventListener("click", () => {
+            fitbotWindow?.classList.remove("open");
         });
 
-        function fitbotResponder(tipo) {
-            let mensajeUser = '';
-            let respuestaBot = '';
+        const respuestasFitBot = {
+            programas: "Tenemos Entrenamiento Personal, Fuerza & Acondicionamiento, Nutrición y HIIT. Revisa la sección #programas.",
+            nutricion: "Adaptamos planes según tu nivel (Principiante, Intermedio o Avanzado) y restricciones. Mira #nutricion.",
+            membresias: "Planes desde Básico ($80,000/mes), Pro ($230,000/3 meses) hasta Élite ($900,000/año) en #membresias."
+        };
 
-            if (tipo === 'planes') {
-                mensajeUser = '¿Cuáles son los planes?';
-                respuestaBot = 'Tenemos tres planes principales: Básico ($80,000/mes), Pro ($230,000/3 meses, el más popular) y Élite ($900,000/anual). ¡Puedes revisar la sección de Membresías!';
-            } else if (tipo === 'nutricion') {
-                mensajeUser = 'Información de nutrición';
-                respuestaBot = 'Nuestros planes de nutrición se adaptan según tu nivel (Principiante, Intermedio y Avanzado) filtrando tus intolerancias y calorías objetivo.';
-            } else if (tipo === 'contacto') {
-                mensajeUser = 'Hablar con un asesor';
-                respuestaBot = 'Puedes escribirnos al WhatsApp +57 300 123 4567 o visitarnos en nuestra sede principal. ¡Estaremos encantados de ayudarte!';
-            }
+        fitbotBody?.addEventListener("click", (e) => {
+            const btn = e.target.closest(".fitbot-opt-btn");
+            if (!btn) return;
 
-            // Agregar mensaje del usuario
-            const userMsgDiv = document.createElement('div');
-            userMsgDiv.className = 'fitbot-msg user';
-            userMsgDiv.innerText = mensajeUser;
-            fitbotBody.appendChild(userMsgDiv);
+            const opt = btn.getAttribute("data-opt");
+            const userMsg = document.createElement("div");
+            userMsg.className = "fitbot-msg user";
+            userMsg.textContent = btn.querySelector("span")?.textContent || opt;
+            fitbotBody.appendChild(userMsg);
 
-            // Simular respuesta del bot
-            setTimeout(() => {
-                const botMsgDiv = document.createElement('div');
-                botMsgDiv.className = 'fitbot-msg bot';
-                botMsgDiv.innerText = respuestaBot;
-                fitbotBody.appendChild(botMsgDiv);
-                fitbotBody.scrollTop = fitbotBody.scrollHeight;
-            }, 400);
+            const botMsg = document.createElement("div");
+            botMsg.className = "fitbot-msg bot";
+            botMsg.textContent = respuestasFitBot[opt] || "¿En qué más te puedo ayudar?";
+            fitbotBody.appendChild(botMsg);
 
             fitbotBody.scrollTop = fitbotBody.scrollHeight;
+        });
+
+        const formContacto = document.getElementById("formContactoFitboom");
+        const contactoFeedback = document.getElementById("contactoFeedback");
+
+        formContacto?.addEventListener("submit", (e) => {
+            e.preventDefault();
+            const nombre = document.getElementById("contactoNombre").value.trim();
+            const programa = document.getElementById("contactoPrograma").value;
+
+            contactoFeedback.className = "alert alert-success py-2 small";
+            contactoFeedback.textContent = `¡Gracias, ${nombre}! Recibimos tu solicitud para "${programa}". Te contactaremos pronto.`;
+            contactoFeedback.classList.remove("d-none");
+            formContacto.reset();
+        });
+    </script>
+
+    <!-- Conexión con AccountControllers.js -->
+    <script type="module">
+        import { accountController } from "../../Controllers/AccountControllers.js";
+
+        const formLogin = document.getElementById("formLoginModal");
+        const errorBox = document.getElementById("loginErrorMsg");
+
+        if (formLogin) {
+            formLogin.addEventListener("submit", async (e) => {
+                e.preventDefault();
+                errorBox.classList.add("d-none");
+
+                const correo = document.getElementById("loginCorreo").value;
+                const password = document.getElementById("loginPassword").value;
+
+                const resultado = await accountController.login({ correo, password });
+
+                if (!resultado.ok) {
+                    errorBox.textContent = resultado.message;
+                    errorBox.classList.remove("d-none");
+                    return;
+                }
+
+                if (resultado.redirectUrl) {
+                    window.location.href = resultado.redirectUrl;
+                }
+            });
+        }
+
+        const modalOnboarding = document.getElementById("modalOnboarding");
+        const selectPlan = document.getElementById("onboardingPlan");
+
+        if (modalOnboarding && selectPlan) {
+            modalOnboarding.addEventListener("show.bs.modal", (event) => {
+                const trigger = event.relatedTarget;
+                const planElegido = trigger?.getAttribute("data-plan");
+                if (planElegido) {
+                    selectPlan.value = planElegido;
+                }
+            });
+        }
+
+        const formOnboarding = document.getElementById("formOnboardingModal");
+        const onboardingFeedback = document.getElementById("onboardingFeedback");
+
+        if (formOnboarding && onboardingFeedback) {
+            formOnboarding.addEventListener("submit", (e) => {
+                e.preventDefault();
+                const nombre = document.getElementById("onboardingNombre").value.trim();
+                const plan = document.getElementById("onboardingPlan").value;
+
+                sessionStorage.setItem("UsuarioNombre", nombre);
+                sessionStorage.setItem("UsuarioPlan", plan);
+
+                onboardingFeedback.className = "alert alert-success py-2 small";
+                onboardingFeedback.textContent = `¡Listo, ${nombre}! Seleccionaste el plan ${plan}.`;
+                onboardingFeedback.classList.remove("d-none");
+            });
         }
     </script>
 </body>
